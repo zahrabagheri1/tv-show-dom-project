@@ -6,43 +6,77 @@ const contaner = document.querySelector(".contaner")
 //div name divCart2   in  contaner div
 const divCart2 = document.createElement("div")
 divCart2.classList.add("divCart2")
-contaner.className = "select"
+contaner.classList = "select"
 contaner.append(divCart2)
+
+let sear =[]
+const searchBar = document.querySelector("input")
+console.log(searchBar)
+
+searchBar.addEventListener("keyup", (e)=>{
+    const searching = e.target.value
+    const filterValue1 = sear.filter(value1 => {
+       return value1.data.include(searching)
+    })
+    console.log(filterValue1)
+})
+
 
 const main = async () =>{
     try{
         //get API
         // const sopranosURL =  getApi()
-        const sopranosURL = await axios.get("https://api.tvmaze.com/shows/527/episodes")
+        // const sopranosURL = await axios.get("https://api.tvmaze.com/shows/527/episodes")
+        // const sopranosURL = await fetch("https://api.tvmaze.com/shows/527/episodes")
+        // sear = await sopranosURL.json();
         // console.log(sear)
-    
-        /* -------------------------------------------------------------------------- */
-        /*                                  SELECTOR                                  */
-        /* -------------------------------------------------------------------------- */
-        const selector = document.querySelector("select")
-        selector.className = "selectorClass"
-        // navBar.append(select2)
         
+        
+        //SELECTOR
+        const select2 = document.querySelector("select")
+        // select2.innerText ="select one of season!"
+        // navBar.append(select2)
+
+
+        //SEARCH
+        
+        // const sear = search2.value
+        // navBar.append(search2)
+
+        
+
         for( let i=0 ; i < sopranosURL.data.length ; i++ ){
-        // for(let api of getApi){
-        /* -------------------------------------------------------------------------- */
-        /*                                  SELECTOR                                  */
-        /* -------------------------------------------------------------------------- */
-        const option = document.createElement("option")
-        option.className = "optionClass"
+        
+
+
+        //  SELECTOR
+        const option1 = document.createElement("option")
+        option1.classList = "optionClass"
         if(sopranosURL.data[i].season < 10 ){ 
             const season2 = `0${sopranosURL.data[i].season}`
             if(sopranosURL.data[i].number < 10){
                 const number2 = `0${sopranosURL.data[i].number}`
-                option.innerHTML = `${sopranosURL.data[i].name} - S${season2} E${number2}` 
+                option1.innerHTML = `${sopranosURL.data[i].name} - S${season2} E${number2}` 
             }else{
-                option.innerHTML = `${sopranosURL.data[i].name} - S${sopranosURL.data[i].season} E${sopranosURL.data[i].number}`
+                option1.innerHTML = `${sopranosURL.data[i].name} - S${sopranosURL.data[i].season} E${sopranosURL.data[i].number}`
             }}
-        selector.append(option)
+        select2.append(option1)
         // navBar.append(select2)
 
+        //SEARCH
+       
+        
+        // const sear2 = sopranosURL.data[i].innerHTML.toLowerCase().includes(sear)
+        // if(sear2 !== true){
+        //     sopranosURL.data[i].style.display = "none"
+        // }else{
+        //     sopranosURL.data[i].style.display = "block"
+        // }
 
-        /* --------------------------------- HEADING -------------------------------- */
+       
+
+
+        //  HEADING
         const heading = document.createElement("h2")
         // Each part should be zero-padded to two digits
         if(sopranosURL.data[i].season < 10 ){ 
@@ -56,20 +90,25 @@ const main = async () =>{
         heading.classList.add("head")
  
 
-        /* ---------------------------------- IMAGE --------------------------------- */
+        
+
+
+        //    IMAGE
         const imge = document.createElement("img")
         imge.src = sopranosURL.data[i].image.medium
         imge.classList.add("image")
 
 
 
-        /* --------------------------------- SUMMARY -------------------------------- */
+
+
+        //   SUMMARY
         const paragraph = document.createElement("p")
         paragraph.innerHTML = sopranosURL.data[i].summary
         paragraph.classList.add("parag")
 
    
-        /* -------------------------------- READ MORE ------------------------------- */
+        //     READ MORE
         // if(paragraph.length > 300){
         //     console.log(paragraph)
         //     divCart.append(paragraph)
@@ -91,17 +130,14 @@ const main = async () =>{
         // }
 
 
-        /* ----------------------------------- DIV ---------------------------------- */
+        //   DIV
         const divCart = document.createElement("div")
-        // divCart.classList.add("divCart")
-        divCart.className = "cartdiv"
-        /* ------------------------------ css style DIV ----------------------------- */
+        //css style DIV
         // divCart.style.padding = "10px"
         divCart.style.backgroundColor = "#79DEF7"
         divCart.style.border = "solid"
         divCart.style.borderRadius = "2rem"
 
-        /* --------------------------------- append --------------------------------- */
         divCart.append(heading)
         divCart.append(imge)
         divCart.append(paragraph)
@@ -126,70 +162,8 @@ const main = async () =>{
     }
 } 
 
-
 //call function
 main()
-
-
-/* -------------------------------------------------------------------------- */
-/*                                   SEARCH                                   */
-/* -------------------------------------------------------------------------- */
-
-let searchBar = document.querySelector("input")
-
-searchBar.addEventListener("keyup", ()=>{
-
-    const label = document.querySelector("label")
-    const cartdivs = document.getElementsByClassName("cartdiv")
-    let searchBar = document.querySelector("input")
-    searchBar = searchBar.value.toLowerCase()
-    // console.log(searchBar)
-    let counter = 0;
-
-    for(j=0;j<cartdivs.length;j++){
-        if(!cartdivs[j].innerHTML.toLowerCase().includes(searchBar)){
-            cartdivs[j].style.display = "none"
-        } else{
-            cartdivs[j].style.display = "block"
-            counter++
-        }
-    }
-    
-    label.innerHTML = `Displaying ${counter}/${cartdivs.length} Episodes`
-})
-
-
-/* -------------------------------------------------------------------------- */
-/*                                  SELECTOR                                  */
-/* -------------------------------------------------------------------------- */
-let selectBar = document.querySelector("select")
-selectBar.addEventListener("change", ()=>{
-    const cartdivs = document.getElementsByClassName("cartdiv")
-    const option = document.getElementsByClassName("optionClass")
-    let selects = selectBar.options[selectBar.selectedIndex].text
-    // console.log(selects)
-
-    for (let z = 0; z < selectBar.length; z++) {
-        // console.log(option[z])
-
-        if (option[z].value === selects) {
-            cartdivs[z].style.display = "block"
-        }else{
-            cartdivs[z].style.display = "none"
-        };
-        
-    }
-})
-
-
-// const displayValues = (values) => {
-//     const htmlString = values.map((values)=>{
-//         return
-
-//     })
-//     .join("")
-//     // .innerHTML = htmlString
-// }
 
 function getApi(){
     return[
