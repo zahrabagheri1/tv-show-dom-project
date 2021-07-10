@@ -11,85 +11,13 @@ body{
 header{
     background: linear-gradient(#9cf6f6,#2f4858);
     padding: 80px;
-    margin: 10px;
+    /* margin: 10px; */
     display: grid;
    /* border: ; */
-   grid-template-columns: repeat(3, auto);
+   grid-template-columns: repeat(5, auto);
 
     
 }
-
-/* search box */
-
-.searchcontainer{
-    /* display: grid; */
-    background-color: #1e272e;
-    color: white;
-    height: auto;
-    width: auto;
-    /* position: absolute; */
-    /* transform: translate(-50% , -50%); */
-    border-radius: 4rem;
-    padding: 10px;
-    
-}
-
-.search_box{
-    /* display: grid; */
-    /* float: inline-grid; */
-    float: left;
-    width: 0;
-    height: 1rem;
-    /* display: inline; */
-    background: none;
-    color: rgb(121, 156, 212);
-    font-size: 5px;
-    border-radius: 2rem;
-    outline: none;
-    border: none;
-    position: relative;
-    opacity: 2;
-    transition: all .75s ease-in;
-    cursor: pointer;
-
-}
-
-/* .search__box:focus, .search__box:hover {
-  background-color: #f1f2f6;
-} */
-
-
-.search_icon{
-    box-sizing: border-box;
-    float: right;
-    font-size: 1rem;
-    /* display: inline-block; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* margin-left: auto; */
-    cursor: pointer;
-    position: absolute;
-    color: rgb(255, 251, 0);
-    transition: all .25s ease-in;
-    /* padding: 0.7rem; */
-    border-radius: 50%;
-}
-
-
-.searchcontainer :hover > .search_box{
-    width: 85%;
-    padding: 0 1rem;
-}
-
-.searchcontainer :hover > .search_icon{
-    background-color: white;
-}
-
-.show{
-    width: 85%;
-    border: 1px solid red;
-}
-
 /* 
 .divCart{
     padding: 10px;
@@ -102,8 +30,7 @@ header{
     display: grid;
     grid-template-columns: repeat(3, auto) ;
     grid-gap: 20px;
-    margin: 50px;
-    /* padding: 50px; */
+    padding: 50px;
 }
 
 .head{
@@ -117,11 +44,8 @@ header{
 
 .image{
     display: grid;
-    /* text-align: center; */
+    text-align: center;
     border-radius: 2rem;
-    /* justify-content: center; */
-    /* align-content: center; */
-    /* padding: auto; */
     margin: auto;
 }
 .parag{
@@ -133,10 +57,10 @@ header{
 }
 
 
-.searchLabel{
+.label{
     color: black;
     /* background-color: violet; */
-    /* padding: ;     */
+    
 }
 
 /* 
